@@ -1405,6 +1405,46 @@ namespace Lab1
 
             return solution;
         }
+
+        public double[] JordanoGaussMethod(double[,] matrix, double[] vector)
+        {
+            int matrixSize = matrix.GetLength(0);
+
+            // Прямой ход
+            for (int matrixIndex = 0; matrixIndex < matrixSize; ++matrixIndex)
+            {
+                // Нормализация строки (деление на главный элемент)
+                double norm = matrix[matrixIndex, matrixIndex];
+                for (int normalisationIndex = 0; normalisationIndex < matrixSize; ++normalisationIndex)
+                {
+                    matrix[matrixIndex, normalisationIndex] /= norm;
+                }
+                vector[matrixIndex] /= norm;
+
+                // Вычитание строки из всех остальных строк
+                for (int currentRowIndex = 0; currentRowIndex < matrixSize; ++currentRowIndex)
+                {
+                    if (currentRowIndex != matrixIndex)
+                    {
+                        double coef = matrix[currentRowIndex, matrixIndex];
+                        for (int columnIndex = 0; columnIndex < matrixSize; ++columnIndex)
+                        {
+                            matrix[currentRowIndex, columnIndex] -= coef * matrix[matrixIndex, columnIndex];
+                        }
+                        vector[currentRowIndex] -= coef * vector[matrixIndex];
+                    }
+                }
+            }
+
+            // Обратный ход (по факту его тут нет, просто запись из вектора в решение)
+            double[] solution = new double[matrixSize];
+            for (int resultIndex = 0; resultIndex < matrixSize; ++resultIndex)
+            {
+                solution[resultIndex] = vector[resultIndex];
+            }
+
+            return solution;
+        }
     }
 
 

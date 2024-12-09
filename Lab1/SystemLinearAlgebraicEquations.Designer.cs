@@ -34,17 +34,22 @@
             dataGridView2 = new System.Windows.Forms.DataGridView();
             startCalculate = new System.Windows.Forms.Button();
             Choose = new System.Windows.Forms.GroupBox();
-            Gauss = new System.Windows.Forms.RadioButton();
-            JordanoGauss = new System.Windows.Forms.RadioButton();
             Cramer = new System.Windows.Forms.RadioButton();
+            JordanoGauss = new System.Windows.Forms.RadioButton();
+            Gauss = new System.Windows.Forms.RadioButton();
+            input = new System.Windows.Forms.GroupBox();
+            file = new System.Windows.Forms.RadioButton();
+            hand = new System.Windows.Forms.RadioButton();
+            openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             Choose.SuspendLayout();
+            input.SuspendLayout();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new System.Drawing.Point(8, 310);
+            button1.Location = new System.Drawing.Point(12, 403);
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(104, 23);
             button1.TabIndex = 0;
@@ -77,7 +82,7 @@
             // 
             // startCalculate
             // 
-            startCalculate.Location = new System.Drawing.Point(12, 474);
+            startCalculate.Location = new System.Drawing.Point(186, 403);
             startCalculate.Name = "startCalculate";
             startCalculate.Size = new System.Drawing.Size(75, 23);
             startCalculate.TabIndex = 4;
@@ -90,34 +95,12 @@
             Choose.Controls.Add(Cramer);
             Choose.Controls.Add(JordanoGauss);
             Choose.Controls.Add(Gauss);
-            Choose.Location = new System.Drawing.Point(12, 351);
+            Choose.Location = new System.Drawing.Point(157, 279);
             Choose.Name = "Choose";
             Choose.Size = new System.Drawing.Size(132, 100);
             Choose.TabIndex = 5;
             Choose.TabStop = false;
             Choose.Text = "Выбор метода";
-            // 
-            // Gauss
-            // 
-            Gauss.AutoSize = true;
-            Gauss.Location = new System.Drawing.Point(11, 22);
-            Gauss.Name = "Gauss";
-            Gauss.Size = new System.Drawing.Size(55, 19);
-            Gauss.TabIndex = 0;
-            Gauss.TabStop = true;
-            Gauss.Text = "Гаусс";
-            Gauss.UseVisualStyleBackColor = true;
-            // 
-            // JordanoGauss
-            // 
-            JordanoGauss.AutoSize = true;
-            JordanoGauss.Location = new System.Drawing.Point(11, 47);
-            JordanoGauss.Name = "JordanoGauss";
-            JordanoGauss.Size = new System.Drawing.Size(111, 19);
-            JordanoGauss.TabIndex = 1;
-            JordanoGauss.TabStop = true;
-            JordanoGauss.Text = "Жордано-Гаусс";
-            JordanoGauss.UseVisualStyleBackColor = true;
             // 
             // Cramer
             // 
@@ -130,11 +113,71 @@
             Cramer.Text = "Крамер";
             Cramer.UseVisualStyleBackColor = true;
             // 
+            // JordanoGauss
+            // 
+            JordanoGauss.AutoSize = true;
+            JordanoGauss.Location = new System.Drawing.Point(11, 47);
+            JordanoGauss.Name = "JordanoGauss";
+            JordanoGauss.Size = new System.Drawing.Size(111, 19);
+            JordanoGauss.TabIndex = 1;
+            JordanoGauss.TabStop = true;
+            JordanoGauss.Text = "Жордано-Гаусс";
+            JordanoGauss.UseVisualStyleBackColor = true;
+            // 
+            // Gauss
+            // 
+            Gauss.AutoSize = true;
+            Gauss.Location = new System.Drawing.Point(11, 22);
+            Gauss.Name = "Gauss";
+            Gauss.Size = new System.Drawing.Size(55, 19);
+            Gauss.TabIndex = 0;
+            Gauss.TabStop = true;
+            Gauss.Text = "Гаусс";
+            Gauss.UseVisualStyleBackColor = true;
+            // 
+            // input
+            // 
+            input.Controls.Add(file);
+            input.Controls.Add(hand);
+            input.Location = new System.Drawing.Point(12, 309);
+            input.Name = "input";
+            input.Size = new System.Drawing.Size(109, 85);
+            input.TabIndex = 6;
+            input.TabStop = false;
+            input.Text = "Ввод:";
+            // 
+            // file
+            // 
+            file.AutoSize = true;
+            file.Location = new System.Drawing.Point(8, 51);
+            file.Name = "file";
+            file.Size = new System.Drawing.Size(77, 19);
+            file.TabIndex = 1;
+            file.TabStop = true;
+            file.Text = "Из файла";
+            file.UseVisualStyleBackColor = true;
+            // 
+            // hand
+            // 
+            hand.AutoSize = true;
+            hand.Location = new System.Drawing.Point(8, 26);
+            hand.Name = "hand";
+            hand.Size = new System.Drawing.Size(66, 19);
+            hand.TabIndex = 0;
+            hand.TabStop = true;
+            hand.Text = "Ручной";
+            hand.UseVisualStyleBackColor = true;
+            // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            // 
             // SystemLinearAlgebraicEquations
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(933, 522);
+            Controls.Add(input);
             Controls.Add(Choose);
             Controls.Add(startCalculate);
             Controls.Add(dataGridView2);
@@ -147,6 +190,8 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             Choose.ResumeLayout(false);
             Choose.PerformLayout();
+            input.ResumeLayout(false);
+            input.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -162,5 +207,9 @@
         private System.Windows.Forms.RadioButton Gauss;
         private System.Windows.Forms.RadioButton Cramer;
         private System.Windows.Forms.RadioButton JordanoGauss;
+        private System.Windows.Forms.GroupBox input;
+        private System.Windows.Forms.RadioButton file;
+        private System.Windows.Forms.RadioButton hand;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

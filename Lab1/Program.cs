@@ -1342,6 +1342,8 @@ namespace Lab1
             return (result, array);
         }
 
+
+
         public double[] GaussMethod(double[,] matrix, double[] vector)
         {
             int matrixSize = matrix.GetLength(0);

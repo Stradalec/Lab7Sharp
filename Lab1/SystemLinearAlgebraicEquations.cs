@@ -43,7 +43,7 @@ namespace Lab1
                 dataGridView1.Rows.Add();
             }
 
-            // Инициализировать значения в таблице для матрицы
+            // Заспавнить значения в таблице для матрицы
             for (int spawnZeroIndex = 0; spawnZeroIndex < matrixCount; ++spawnZeroIndex)
             {
                 for (int ZeroIndex = 0; ZeroIndex < matrixCount; ++ZeroIndex)
@@ -60,7 +60,7 @@ namespace Lab1
                 dataGridView2.Rows.Add();
             }
 
-            // Инициализировать значения в таблице для вектора-столбца
+            // Заспавнить значения в таблице для вектора-столбца
             for (int vectorSpawnIndex = 0; vectorSpawnIndex < matrixCount; ++vectorSpawnIndex)
             {
                 dataGridView2.Rows[vectorSpawnIndex].Cells[0].Value = 0;
@@ -71,10 +71,23 @@ namespace Lab1
 
         private void startCalculate_Click(object sender, EventArgs inputEvent)
         {
-            StartGauss(sender, inputEvent);
+            if (Gauss.Checked) 
+            {
+                StartGauss(sender, inputEvent);
+            }
+            if (JordanoGauss.Checked) 
+            {
+                StartJordanoGauss(sender, inputEvent);
+            }
+            if (Cramer.Checked) 
+            {
+                StartCramer(sender, inputEvent);
+            }
         }
 
         public event EventHandler<EventArgs> StartGauss;
+        public event EventHandler<EventArgs> StartJordanoGauss;
+        public event EventHandler<EventArgs> StartCramer;
 
         double[,] IAlgebraicView.GetMatrix()
         {

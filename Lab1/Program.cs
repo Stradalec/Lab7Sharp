@@ -123,6 +123,8 @@ namespace Lab1
         void ShowResult(double[] result);
 
         event EventHandler<EventArgs> StartGauss;
+        event EventHandler<EventArgs> StartJordanoGauss;
+        event EventHandler<EventArgs> StartCramer;
     }
 
     // Модель. Основная часть работы программы происходит здесь
@@ -1602,11 +1604,25 @@ namespace Lab1
             model = new Model();
 
             algebraicView.StartGauss += new EventHandler<EventArgs>(CalculateGauss);
+            algebraicView.StartJordanoGauss += new EventHandler<EventArgs>(CalculateJordanoGauss);
+            algebraicView.StartCramer += new EventHandler<EventArgs>(CalculateCramer);
         }
 
         private void CalculateGauss(object sender, EventArgs inputEvent) 
         {
             var output = model.GaussMethod(algebraicView.GetMatrix(), algebraicView.GetVector());
+            algebraicView.ShowResult(output);
+        }
+
+        private void CalculateJordanoGauss(object sender, EventArgs inputEvent)
+        {
+            var output = model.JordanoGaussMethod(algebraicView.GetMatrix(), algebraicView.GetVector());
+            algebraicView.ShowResult(output);
+        }
+
+        private void CalculateCramer(object sender, EventArgs inputEvent)
+        {
+            var output = model.CramerMethod(algebraicView.GetMatrix(), algebraicView.GetVector());
             algebraicView.ShowResult(output);
         }
 

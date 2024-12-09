@@ -33,13 +33,18 @@
             dataGridView1 = new System.Windows.Forms.DataGridView();
             dataGridView2 = new System.Windows.Forms.DataGridView();
             startCalculate = new System.Windows.Forms.Button();
+            Choose = new System.Windows.Forms.GroupBox();
+            Gauss = new System.Windows.Forms.RadioButton();
+            JordanoGauss = new System.Windows.Forms.RadioButton();
+            Cramer = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            Choose.SuspendLayout();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new System.Drawing.Point(24, 479);
+            button1.Location = new System.Drawing.Point(8, 310);
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(104, 23);
             button1.TabIndex = 0;
@@ -49,7 +54,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new System.Drawing.Point(28, 449);
+            textBox1.Location = new System.Drawing.Point(12, 280);
             textBox1.Name = "textBox1";
             textBox1.Size = new System.Drawing.Size(100, 23);
             textBox1.TabIndex = 1;
@@ -72,7 +77,7 @@
             // 
             // startCalculate
             // 
-            startCalculate.Location = new System.Drawing.Point(201, 479);
+            startCalculate.Location = new System.Drawing.Point(12, 474);
             startCalculate.Name = "startCalculate";
             startCalculate.Size = new System.Drawing.Size(75, 23);
             startCalculate.TabIndex = 4;
@@ -80,11 +85,57 @@
             startCalculate.UseVisualStyleBackColor = true;
             startCalculate.Click += startCalculate_Click;
             // 
+            // Choose
+            // 
+            Choose.Controls.Add(Cramer);
+            Choose.Controls.Add(JordanoGauss);
+            Choose.Controls.Add(Gauss);
+            Choose.Location = new System.Drawing.Point(12, 351);
+            Choose.Name = "Choose";
+            Choose.Size = new System.Drawing.Size(132, 100);
+            Choose.TabIndex = 5;
+            Choose.TabStop = false;
+            Choose.Text = "Выбор метода";
+            // 
+            // Gauss
+            // 
+            Gauss.AutoSize = true;
+            Gauss.Location = new System.Drawing.Point(11, 22);
+            Gauss.Name = "Gauss";
+            Gauss.Size = new System.Drawing.Size(55, 19);
+            Gauss.TabIndex = 0;
+            Gauss.TabStop = true;
+            Gauss.Text = "Гаусс";
+            Gauss.UseVisualStyleBackColor = true;
+            // 
+            // JordanoGauss
+            // 
+            JordanoGauss.AutoSize = true;
+            JordanoGauss.Location = new System.Drawing.Point(11, 47);
+            JordanoGauss.Name = "JordanoGauss";
+            JordanoGauss.Size = new System.Drawing.Size(111, 19);
+            JordanoGauss.TabIndex = 1;
+            JordanoGauss.TabStop = true;
+            JordanoGauss.Text = "Жордано-Гаусс";
+            JordanoGauss.UseVisualStyleBackColor = true;
+            // 
+            // Cramer
+            // 
+            Cramer.AutoSize = true;
+            Cramer.Location = new System.Drawing.Point(11, 72);
+            Cramer.Name = "Cramer";
+            Cramer.Size = new System.Drawing.Size(67, 19);
+            Cramer.TabIndex = 2;
+            Cramer.TabStop = true;
+            Cramer.Text = "Крамер";
+            Cramer.UseVisualStyleBackColor = true;
+            // 
             // SystemLinearAlgebraicEquations
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(933, 522);
+            Controls.Add(Choose);
             Controls.Add(startCalculate);
             Controls.Add(dataGridView2);
             Controls.Add(dataGridView1);
@@ -94,6 +145,8 @@
             Text = "SystemLinearAlgebraicEquations";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            Choose.ResumeLayout(false);
+            Choose.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -105,5 +158,9 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button startCalculate;
+        private System.Windows.Forms.GroupBox Choose;
+        private System.Windows.Forms.RadioButton Gauss;
+        private System.Windows.Forms.RadioButton Cramer;
+        private System.Windows.Forms.RadioButton JordanoGauss;
     }
 }

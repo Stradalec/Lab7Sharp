@@ -114,6 +114,17 @@ namespace Lab1
         event EventHandler<EventArgs> ReverseMode;
     }
 
+    interface IAlgebraicView 
+    {
+        double[,] GetMatrix();
+
+        double[] GetVector();
+
+        void ShowResult(double[] result);
+
+        event EventHandler<EventArgs> StartGauss;
+    }
+
     // Модель. Основная часть работы программы происходит здесь
     class Model
     {
@@ -1328,6 +1339,72 @@ namespace Lab1
 
             return (result, array);
         }
+
+        public double[] GaussMethod(double[,] matrix, double[] vector)
+        {
+            int matrixSize = matrix.GetLength(0);
+            double[] solution = new double[matrixSize];
+
+            // Прямой ход
+            for (int currentRow = 0; currentRow < matrixSize; ++currentRow)
+            {
+                // Поиск максимального элемента в столбце
+                int maxRowIndex = currentRow;
+                for (int row = currentRow + 1; row < matrixSize; ++row)
+                {
+                    if (Math.Abs(matrix[row, currentRow]) > Math.Abs(matrix[maxRowIndex, currentRow]))
+                    {
+                        maxRowIndex = row;
+                    }
+                }
+
+                // Перестановка строк
+                if (maxRowIndex != currentRow)
+                {
+                    double[] tempRow = new double[matrixSize];
+                    for (int column = 0; column < matrixSize; ++column)
+                    {
+                        tempRow[column] = matrix[currentRow, column];
+                        matrix[currentRow, column] = matrix[maxRowIndex, column];
+                        matrix[maxRowIndex, column] = tempRow[column];
+                    }
+                    double tempVectorValue = vector[currentRow];
+                    vector[currentRow] = vector[maxRowIndex];
+                    vector[maxRowIndex] = tempVectorValue;
+                }
+
+                // Нормализация строки (деление на главный элемент)
+                double normalizationFactor = matrix[currentRow, currentRow];
+                for (int column = currentRow; column < matrixSize; ++column)
+                {
+                    matrix[currentRow, column] /= normalizationFactor;
+                }
+                vector[currentRow] /= normalizationFactor;
+
+                // Вычитание строки из нижележащих строк
+                for (int row = currentRow + 1; row < matrixSize; ++row)
+                {
+                    double coefficient = matrix[row, currentRow];
+                    for (int column = currentRow; column < matrixSize; ++column)
+                    {
+                        matrix[row, column] -= coefficient * matrix[currentRow, column];
+                    }
+                    vector[row] -= coefficient * vector[currentRow];
+                }
+            }
+
+            // Обратный ход
+            for (int currentRow = matrixSize - 1; currentRow >= 0; --currentRow)
+            {
+                solution[currentRow] = vector[currentRow];
+                for (int row = currentRow - 1; row >= 0; --row)
+                {
+                    vector[row] -= matrix[row, currentRow] * solution[currentRow];
+                }
+            }
+
+            return solution;
+        }
     }
 
 
@@ -1337,6 +1414,7 @@ namespace Lab1
         private IView mainView;
         private ISortView sortView;
         private IIntegralView integralView;
+        private IAlgebraicView algebraicView;
         private Model model;
 
         public Presenter(IView inputView)
@@ -1370,6 +1448,19 @@ namespace Lab1
             integralView.ReverseMode += new EventHandler<EventArgs>(StartReverse);
         }
 
+        public Presenter(IAlgebraicView inputView) 
+        {
+            algebraicView = inputView;
+            model = new Model();
+
+            algebraicView.StartGauss += new EventHandler<EventArgs>(CalculateGauss);
+        }
+
+        private void CalculateGauss(object sender, EventArgs inputEvent) 
+        {
+            var output = model.GaussMethod(algebraicView.GetMatrix(), algebraicView.GetVector());
+            algebraicView.ShowResult(output);
+        }
 
         private void CalculateIntegral(object sender, EventArgs inputEvent)
         {

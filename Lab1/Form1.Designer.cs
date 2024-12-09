@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             dichotomyButton = new System.Windows.Forms.Button();
             tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            richTextBox6 = new System.Windows.Forms.RichTextBox();
             pictureBox6 = new System.Windows.Forms.PictureBox();
             pictureBox5 = new System.Windows.Forms.PictureBox();
             pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -50,7 +51,7 @@
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             button1 = new System.Windows.Forms.Button();
-            richTextBox6 = new System.Windows.Forms.RichTextBox();
+            SLAU = new System.Windows.Forms.Button();
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
@@ -100,6 +101,7 @@
             tableLayoutPanel1.Controls.Add(NewtonButton, 2, 2);
             tableLayoutPanel1.Controls.Add(pictureBox1, 0, 0);
             tableLayoutPanel1.Controls.Add(integralButton, 2, 5);
+            tableLayoutPanel1.Controls.Add(SLAU, 2, 6);
             tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             tableLayoutPanel1.Location = new System.Drawing.Point(11, 72);
             tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
@@ -115,6 +117,15 @@
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             tableLayoutPanel1.Size = new System.Drawing.Size(1017, 498);
             tableLayoutPanel1.TabIndex = 1;
+            // 
+            // richTextBox6
+            // 
+            richTextBox6.Location = new System.Drawing.Point(128, 315);
+            richTextBox6.Name = "richTextBox6";
+            richTextBox6.ReadOnly = true;
+            richTextBox6.Size = new System.Drawing.Size(667, 46);
+            richTextBox6.TabIndex = 17;
+            richTextBox6.Text = "Расчёт интеграла.\nРасчёт интеграла различнейшими способами.\n\n\n\n\n\n\n\n\nКто вообще это читает?";
             // 
             // pictureBox6
             // 
@@ -323,14 +334,18 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // richTextBox6
+            // SLAU
             // 
-            richTextBox6.Location = new System.Drawing.Point(128, 315);
-            richTextBox6.Name = "richTextBox6";
-            richTextBox6.ReadOnly = true;
-            richTextBox6.Size = new System.Drawing.Size(667, 46);
-            richTextBox6.TabIndex = 17;
-            richTextBox6.Text = "Расчёт интеграла.\nРасчёт интеграла различнейшими способами.\n\n\n\n\n\n\n\n\nКто вообще это читает?";
+            SLAU.AutoSize = true;
+            SLAU.Location = new System.Drawing.Point(817, 377);
+            SLAU.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            SLAU.Name = "SLAU";
+            SLAU.Size = new System.Drawing.Size(192, 54);
+            SLAU.TabIndex = 18;
+            SLAU.Text = "СЛАУ";
+            SLAU.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            SLAU.UseVisualStyleBackColor = true;
+            SLAU.Click += SLAU_Click;
             // 
             // MainForm
             // 
@@ -383,6 +398,7 @@
         private System.Windows.Forms.Button integralButton;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.RichTextBox richTextBox6;
+        private System.Windows.Forms.Button SLAU;
     }
 }
 

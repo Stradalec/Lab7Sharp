@@ -92,5 +92,11 @@ namespace Lab1
             IntegralForm integral = new IntegralForm();
             integral.Show();
         }
+
+        private void SLAU_Click(object sender, EventArgs e)
+        {
+            SystemLinearAlgebraicEquations slau = new SystemLinearAlgebraicEquations();
+            slau.Show();
+        }
     }
 }

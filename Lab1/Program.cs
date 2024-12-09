@@ -1445,6 +1445,114 @@ namespace Lab1
 
             return solution;
         }
+
+        public double[] CramerMethod(double[,] matrix, double[] vector)
+        {
+            int matrixSize = matrix.GetLength(0);
+            double[] solution = new double[matrixSize];
+
+            // Рассчитать определитель матрицы коэффициентов
+            double determinant = CalculateDeterminant(matrix);
+
+            // Проверить, что определитель не равен нулю
+            if (determinant == 0)
+            {
+                throw new Exception("Определитель матрицы коэффициентов равен нулю");
+            }
+
+            // Рассчитать определители для каждой переменной
+            for (int determinantIndex = 0; determinantIndex < matrixSize; ++determinantIndex)
+            {
+                double[,] tempMatrix = CreateTempMatrix(matrix, vector, determinantIndex);
+                solution[determinantIndex] = CalculateDeterminant(tempMatrix) / determinant;
+            }
+
+            return solution;
+        }
+
+        private double CalculateDeterminant(double[,] matrix)
+        {
+            int matrixSize = matrix.GetLength(0);
+
+            if (matrixSize == 1)
+            {
+                return matrix[0, 0];
+            }
+            else if (matrixSize == 2)
+            {
+                return matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0];
+            }
+            else
+            {
+                double determinant = 0;
+                for (int findDeterminantIndex = 0; findDeterminantIndex < matrixSize; ++findDeterminantIndex)
+                {
+                    double[,] tempMatrix = CreateTempMatrix(matrix, findDeterminantIndex, 0);
+                    determinant += Math.Pow(-1, findDeterminantIndex) * matrix[0, findDeterminantIndex] * CalculateDeterminant(tempMatrix);
+                }
+                return determinant;
+            }
+        }
+
+        private double[,] CreateTempMatrix(double[,] matrix, double[] vector, int index)
+        {
+            int tempMatrixSize = matrix.GetLength(0);
+            double[,] tempMatrix = new double[tempMatrixSize, tempMatrixSize];
+
+            for (int rowTempIndex = 0; rowTempIndex < tempMatrixSize; ++rowTempIndex)
+            {
+                for (int columnTempIndex = 0; columnTempIndex < tempMatrixSize; ++columnTempIndex)
+                {
+                    if (columnTempIndex != index)
+                    {
+                        tempMatrix[rowTempIndex, columnTempIndex] = matrix[rowTempIndex, columnTempIndex];
+                    }
+                    else
+                    {
+                        tempMatrix[rowTempIndex, columnTempIndex] = vector[rowTempIndex];
+                    }
+                }
+            }
+
+            return tempMatrix;
+        }
+
+        private double[,] CreateTempMatrix(double[,] matrix, int row, int column)
+        {
+            int tempMatrixSize = matrix.GetLength(0);
+            double[,] tempMatrix = new double[tempMatrixSize - 1, tempMatrixSize - 1];
+
+            for (int rowTemp = 0; rowTemp < tempMatrixSize; ++rowTemp)
+            {
+                for (int columnTemp = 0; columnTemp < tempMatrixSize; ++columnTemp)
+                {
+                    if (rowTemp != row && columnTemp != column)
+                    {
+                        int newRow;
+                        if (rowTemp > row)
+                        {
+                            newRow = rowTemp - 1;
+                        }
+                        else
+                        {
+                            newRow = rowTemp;
+                        }
+                        int newColumn;
+                        if (columnTemp > column)
+                        {
+                            newColumn = columnTemp - 1;
+                        }
+                        else
+                        {
+                            newColumn = columnTemp;
+                        }
+                        tempMatrix[newRow, newColumn] = matrix[rowTemp, columnTemp];
+                    }
+                }
+            }
+
+            return tempMatrix;
+        }
     }
 
 

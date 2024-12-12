@@ -16,11 +16,62 @@ namespace Lab1
     public partial class SystemLinearAlgebraicEquations : Form, IAlgebraicView
     {
         private string path = string.Empty;
+        private Size formOriginalSize;
+        private Rectangle recTextBox1;
+        private Rectangle recHand;
+        private Rectangle recFile;
+        private Rectangle recInput;
+        private Rectangle recButton1;
+        private Rectangle recChoose;
+        private Rectangle recGauss;
+        private Rectangle recJordanoGauss;
+        private Rectangle recCramer;
+        private Rectangle recStartCalculate;
         public SystemLinearAlgebraicEquations()
         {
             InitializeComponent();
             Presenter presenter = new Presenter(this);
+            this.Resize += SystemLinearAlgebraicEquations_Resize;
+            formOriginalSize = this.Size;
+            recTextBox1 = new Rectangle(textBox1.Location, textBox1.Size);
+            recHand = new Rectangle(hand.Location, hand.Size);
+            recFile = new Rectangle(file.Location, file.Size);
+            recInput = new Rectangle(input.Location, input.Size);
+            recButton1 = new Rectangle(button1.Location, button1.Size);
+            recChoose = new Rectangle(Choose.Location, Choose.Size);
+            recGauss = new Rectangle(Gauss.Location, Gauss.Size);
+            recJordanoGauss = new Rectangle(JordanoGauss.Location, JordanoGauss.Size);
+            recCramer = new Rectangle(Cramer.Location, Cramer.Size); 
+            recStartCalculate = new Rectangle(startCalculate.Location, startCalculate.Size);
         }
+
+        private void SystemLinearAlgebraicEquations_Resize(object sender, EventArgs e)
+        {
+            AutoResize(textBox1, recTextBox1);
+            AutoResize(hand, recHand);
+            AutoResize(file, recFile);
+            AutoResize(input, recInput);
+            AutoResize(button1, recButton1);
+            AutoResize(Choose, recChoose);
+            AutoResize(Gauss, recGauss);
+            AutoResize(JordanoGauss, recJordanoGauss);
+            AutoResize(Cramer, recCramer);
+            AutoResize(startCalculate, recStartCalculate);
+        }
+        private void AutoResize(Control control, Rectangle rectangle)
+        {
+            double xRatio = (double)(this.Width) / (double)(formOriginalSize.Width);
+            double yRatio = (double)(this.Height) / (double)(formOriginalSize.Height);
+            int newX = (int)(rectangle.X * xRatio);
+            int newY = (int)(rectangle.Y * yRatio);
+
+            int newWidth = (int)(rectangle.Width * xRatio);
+            int newHeight = (int)(rectangle.Height * yRatio);
+
+            control.Location = new Point(newX, newY);
+            control.Size = new Size(newWidth, newHeight);
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -192,7 +243,7 @@ namespace Lab1
             {
                 for (int outputIndex = 0; outputIndex < result.Length; ++outputIndex) 
                 {
-                    resultString += "x" + (outputIndex + 1) + " = " + result[outputIndex].ToString() + "\n";
+                    resultString += "x" + (outputIndex + 1) + " = " + Math.Round(result[outputIndex], 2).ToString() + "\n";
                 }
                 
             }

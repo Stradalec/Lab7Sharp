@@ -27,6 +27,7 @@ namespace Lab1
         private Rectangle recJordanoGauss;
         private Rectangle recCramer;
         private Rectangle recStartCalculate;
+
         public SystemLinearAlgebraicEquations()
         {
             InitializeComponent();

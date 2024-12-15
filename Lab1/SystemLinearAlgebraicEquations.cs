@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -27,6 +28,7 @@ namespace Lab1
         private Rectangle recJordanoGauss;
         private Rectangle recCramer;
         private Rectangle recStartCalculate;
+        private Rectangle recSize;
 
         public SystemLinearAlgebraicEquations()
         {
@@ -44,6 +46,7 @@ namespace Lab1
             recJordanoGauss = new Rectangle(JordanoGauss.Location, JordanoGauss.Size);
             recCramer = new Rectangle(Cramer.Location, Cramer.Size); 
             recStartCalculate = new Rectangle(startCalculate.Location, startCalculate.Size);
+            recSize = new Rectangle(size.Location, size.Size);
         }
 
         private void SystemLinearAlgebraicEquations_Resize(object sender, EventArgs e)
@@ -58,7 +61,9 @@ namespace Lab1
             AutoResize(JordanoGauss, recJordanoGauss);
             AutoResize(Cramer, recCramer);
             AutoResize(startCalculate, recStartCalculate);
+            AutoResize(size, recSize);
         }
+
         private void AutoResize(Control control, Rectangle rectangle)
         {
             double xRatio = (double)(this.Width) / (double)(formOriginalSize.Width);
@@ -76,9 +81,23 @@ namespace Lab1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int matrixCount = Convert.ToInt32(textBox1.Text);
+            Regex regex = new Regex(@"^[\d,-]+$");
+            bool result = true;
+            bool mathces;
+            int matrixCount;
+            if (string.IsNullOrEmpty(textBox1.Text) || (regex.IsMatch(textBox1.Text)) == false)
+            {
+                MessageBox.Show("Ошибка ввода размерности матрицы", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                matrixCount = 1;
+            }
+            else 
+            {
+                matrixCount = Convert.ToInt32(textBox1.Text);
+            }
+            
             if (hand.Checked) 
-            {                
+            {
+                
                 foreach (Control control in this.Controls)
                 {
                     if (control is DataGridView)

@@ -41,6 +41,7 @@
             file = new System.Windows.Forms.RadioButton();
             hand = new System.Windows.Forms.RadioButton();
             openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            size = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             Choose.SuspendLayout();
@@ -49,7 +50,7 @@
             // 
             // button1
             // 
-            button1.Location = new System.Drawing.Point(12, 403);
+            button1.Location = new System.Drawing.Point(490, 163);
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(104, 23);
             button1.TabIndex = 0;
@@ -59,7 +60,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new System.Drawing.Point(12, 280);
+            textBox1.Location = new System.Drawing.Point(490, 40);
             textBox1.Name = "textBox1";
             textBox1.Size = new System.Drawing.Size(100, 23);
             textBox1.TabIndex = 1;
@@ -82,7 +83,7 @@
             // 
             // startCalculate
             // 
-            startCalculate.Location = new System.Drawing.Point(186, 403);
+            startCalculate.Location = new System.Drawing.Point(655, 138);
             startCalculate.Name = "startCalculate";
             startCalculate.Size = new System.Drawing.Size(75, 23);
             startCalculate.TabIndex = 4;
@@ -95,7 +96,7 @@
             Choose.Controls.Add(Cramer);
             Choose.Controls.Add(JordanoGauss);
             Choose.Controls.Add(Gauss);
-            Choose.Location = new System.Drawing.Point(157, 279);
+            Choose.Location = new System.Drawing.Point(626, 14);
             Choose.Name = "Choose";
             Choose.Size = new System.Drawing.Size(132, 100);
             Choose.TabIndex = 5;
@@ -139,7 +140,7 @@
             // 
             input.Controls.Add(file);
             input.Controls.Add(hand);
-            input.Location = new System.Drawing.Point(12, 309);
+            input.Location = new System.Drawing.Point(490, 69);
             input.Name = "input";
             input.Size = new System.Drawing.Size(109, 85);
             input.TabIndex = 6;
@@ -172,11 +173,21 @@
             // 
             openFileDialog1.FileName = "openFileDialog1";
             // 
+            // size
+            // 
+            size.AutoSize = true;
+            size.Location = new System.Drawing.Point(486, 14);
+            size.Name = "size";
+            size.Size = new System.Drawing.Size(134, 15);
+            size.TabIndex = 7;
+            size.Text = "Размерность матрицы:";
+            // 
             // SystemLinearAlgebraicEquations
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(933, 522);
+            Controls.Add(size);
             Controls.Add(input);
             Controls.Add(Choose);
             Controls.Add(startCalculate);
@@ -211,5 +222,6 @@
         private System.Windows.Forms.RadioButton file;
         private System.Windows.Forms.RadioButton hand;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label size;
     }
 }

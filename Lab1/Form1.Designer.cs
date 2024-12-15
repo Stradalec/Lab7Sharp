@@ -48,10 +48,12 @@
             NewtonButton = new System.Windows.Forms.Button();
             pictureBox1 = new System.Windows.Forms.PictureBox();
             integralButton = new System.Windows.Forms.Button();
+            SLAU = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             button1 = new System.Windows.Forms.Button();
-            SLAU = new System.Windows.Forms.Button();
+            pictureBox7 = new System.Windows.Forms.PictureBox();
+            richTextBox7 = new System.Windows.Forms.RichTextBox();
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
@@ -59,6 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             SuspendLayout();
             // 
             // dichotomyButton
@@ -83,6 +86,8 @@
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68F));
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanel1.Controls.Add(richTextBox7, 1, 6);
+            tableLayoutPanel1.Controls.Add(pictureBox7, 0, 6);
             tableLayoutPanel1.Controls.Add(richTextBox6, 1, 5);
             tableLayoutPanel1.Controls.Add(pictureBox6, 0, 5);
             tableLayoutPanel1.Controls.Add(pictureBox5, 0, 4);
@@ -303,6 +308,19 @@
             integralButton.UseVisualStyleBackColor = true;
             integralButton.Click += integralButton_Click;
             // 
+            // SLAU
+            // 
+            SLAU.AutoSize = true;
+            SLAU.Location = new System.Drawing.Point(817, 377);
+            SLAU.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            SLAU.Name = "SLAU";
+            SLAU.Size = new System.Drawing.Size(192, 54);
+            SLAU.TabIndex = 18;
+            SLAU.Text = "СЛАУ";
+            SLAU.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            SLAU.UseVisualStyleBackColor = true;
+            SLAU.Click += SLAU_Click;
+            // 
             // label1
             // 
             label1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom;
@@ -334,18 +352,25 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // SLAU
+            // pictureBox7
             // 
-            SLAU.AutoSize = true;
-            SLAU.Location = new System.Drawing.Point(817, 377);
-            SLAU.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            SLAU.Name = "SLAU";
-            SLAU.Size = new System.Drawing.Size(192, 54);
-            SLAU.TabIndex = 18;
-            SLAU.Text = "СЛАУ";
-            SLAU.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            SLAU.UseVisualStyleBackColor = true;
-            SLAU.Click += SLAU_Click;
+            pictureBox7.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom;
+            pictureBox7.Image = (System.Drawing.Image)resources.GetObject("pictureBox7.Image");
+            pictureBox7.Location = new System.Drawing.Point(7, 377);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new System.Drawing.Size(110, 54);
+            pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            pictureBox7.TabIndex = 19;
+            pictureBox7.TabStop = false;
+            // 
+            // richTextBox7
+            // 
+            richTextBox7.Location = new System.Drawing.Point(128, 377);
+            richTextBox7.Name = "richTextBox7";
+            richTextBox7.ReadOnly = true;
+            richTextBox7.Size = new System.Drawing.Size(667, 46);
+            richTextBox7.TabIndex = 20;
+            richTextBox7.Text = "СЛАУ\nРешение систем линейных алгебраических уравнений.\nДоступны три метода: метод Гаусса, метод Гаусса-Жордано и метод Крамера\n\n\n\n\n\n\n\n";
             // 
             // MainForm
             // 
@@ -370,6 +395,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -399,6 +425,8 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.RichTextBox richTextBox6;
         private System.Windows.Forms.Button SLAU;
+        private System.Windows.Forms.RichTextBox richTextBox7;
+        private System.Windows.Forms.PictureBox pictureBox7;
     }
 }
 

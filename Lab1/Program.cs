@@ -1471,6 +1471,7 @@ namespace Lab1
                 solution[determinantIndex] = CalculateDeterminant(tempMatrix) / determinant;
             }
 
+
             return solution;
         }
 
@@ -1491,12 +1492,13 @@ namespace Lab1
                 double determinant = 0;
                 for (int findDeterminantIndex = 0; findDeterminantIndex < matrixSize; ++findDeterminantIndex)
                 {
-                    double[,] tempMatrix = CreateTempMatrix(matrix, findDeterminantIndex, 0);
+                    double[,] tempMatrix = CreateTempMatrix(matrix, 0, findDeterminantIndex);
                     determinant += Math.Pow(-1, findDeterminantIndex) * matrix[0, findDeterminantIndex] * CalculateDeterminant(tempMatrix);
                 }
                 return determinant;
             }
         }
+
 
         private double[,] CreateTempMatrix(double[,] matrix, double[] vector, int index)
         {
@@ -1520,6 +1522,7 @@ namespace Lab1
 
             return tempMatrix;
         }
+
 
         private double[,] CreateTempMatrix(double[,] matrix, int row, int column)
         {

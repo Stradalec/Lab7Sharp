@@ -47,6 +47,8 @@ namespace Lab1
             recCramer = new Rectangle(Cramer.Location, Cramer.Size); 
             recStartCalculate = new Rectangle(startCalculate.Location, startCalculate.Size);
             recSize = new Rectangle(size.Location, size.Size);
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView2.AllowUserToAddRows = false;
         }
 
         private void SystemLinearAlgebraicEquations_Resize(object sender, EventArgs e)
@@ -213,6 +215,43 @@ namespace Lab1
                     MessageBox.Show("Ошибка ввода пути папки", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            if (generate.Checked) 
+            {
+                Random random = new Random();
+
+                for (int mainColumnIndex = 0; mainColumnIndex < matrixCount; ++mainColumnIndex)
+                {
+                    dataGridView1.Columns.Add("col" + mainColumnIndex.ToString(), "X [" + (mainColumnIndex + 1).ToString() + "]");
+                }
+
+                // Добавить строки в таблицу для матрицы
+                for (int mainRowIndex = 0; mainRowIndex < matrixCount; ++mainRowIndex)
+                {
+                    dataGridView1.Rows.Add();
+                }
+
+                // Заспавнить значения в таблице для матрицы
+                for (int spawnZeroIndex = 0; spawnZeroIndex < matrixCount; ++spawnZeroIndex)
+                {
+                    for (int ZeroIndex = 0; ZeroIndex < matrixCount; ++ZeroIndex)
+                    {
+                        dataGridView1.Rows[spawnZeroIndex].Cells[ZeroIndex].Value = random.Next(-10,10);
+                    }
+                }
+                dataGridView2.Columns.Add("col1", "X");
+
+                // Добавить строки в таблицу для вектора-столбца
+                for (int vectorIndex = 0; vectorIndex < matrixCount; ++vectorIndex)
+                {
+                    dataGridView2.Rows.Add();
+                }
+
+                // Заспавнить значения в таблице для вектора-столбца
+                for (int vectorSpawnIndex = 0; vectorSpawnIndex < matrixCount; ++vectorSpawnIndex)
+                {
+                    dataGridView2.Rows[vectorSpawnIndex].Cells[0].Value = random.Next(-10, 10);
+                }
+            }
 
 
         }
@@ -239,8 +278,8 @@ namespace Lab1
 
         double[,] IAlgebraicView.GetMatrix()
         {
-            double[,] matrix = new double[dataGridView1.Rows.Count - 1, dataGridView1.Columns.Count];
-            for (int rowIndex = 0; rowIndex < dataGridView1.Rows.Count - 1; ++rowIndex)
+            double[,] matrix = new double[dataGridView1.Rows.Count, dataGridView1.Columns.Count];
+            for (int rowIndex = 0; rowIndex < dataGridView1.Rows.Count; ++rowIndex)
             {
                 for (int columnIndex = 0; columnIndex < dataGridView1.Columns.Count; ++columnIndex)
                 {
@@ -252,8 +291,8 @@ namespace Lab1
 
         double[] IAlgebraicView.GetVector()
         {
-            double[] vector = new double[dataGridView2.Rows.Count - 1];
-            for (int vectorIndex = 0; vectorIndex < dataGridView2.Rows.Count - 1; ++vectorIndex)
+            double[] vector = new double[dataGridView2.Rows.Count];
+            for (int vectorIndex = 0; vectorIndex < dataGridView2.Rows.Count; ++vectorIndex)
             {
                 vector[vectorIndex] = Convert.ToDouble(dataGridView2.Rows[vectorIndex].Cells[0].Value);
             }

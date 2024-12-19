@@ -120,7 +120,7 @@ namespace Lab1
 
         double[] GetVector();
 
-        void ShowResult(double[] result);
+        void ShowResult(double[] result, int Method);
 
         event EventHandler<EventArgs> StartGauss;
         event EventHandler<EventArgs> StartJordanoGauss;
@@ -1616,19 +1616,19 @@ namespace Lab1
         private void CalculateGauss(object sender, EventArgs inputEvent) 
         {
             var output = model.GaussMethod(algebraicView.GetMatrix(), algebraicView.GetVector());
-            algebraicView.ShowResult(output);
+            algebraicView.ShowResult(output, 1);
         }
 
         private void CalculateJordanoGauss(object sender, EventArgs inputEvent)
         {
             var output = model.JordanoGaussMethod(algebraicView.GetMatrix(), algebraicView.GetVector());
-            algebraicView.ShowResult(output);
+            algebraicView.ShowResult(output, 2);
         }
 
         private void CalculateCramer(object sender, EventArgs inputEvent)
         {
             var output = model.CramerMethod(algebraicView.GetMatrix(), algebraicView.GetVector());
-            algebraicView.ShowResult(output);
+            algebraicView.ShowResult(output, 3);
         }
 
         private void CalculateIntegral(object sender, EventArgs inputEvent)

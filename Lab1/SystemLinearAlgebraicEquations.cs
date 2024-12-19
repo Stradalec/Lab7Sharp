@@ -218,7 +218,15 @@ namespace Lab1
             if (generate.Checked) 
             {
                 Random random = new Random();
-
+                int interval = 10;
+                if (string.IsNullOrEmpty(textBox2.Text) || (regex.IsMatch(textBox2.Text)) == false)
+                {
+                    MessageBox.Show("Ошибка ввода диапазона", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    interval = Convert.ToInt32(textBox2.Text);
+                }
                 for (int mainColumnIndex = 0; mainColumnIndex < matrixCount; ++mainColumnIndex)
                 {
                     dataGridView1.Columns.Add("col" + mainColumnIndex.ToString(), "X [" + (mainColumnIndex + 1).ToString() + "]");
@@ -235,7 +243,7 @@ namespace Lab1
                 {
                     for (int ZeroIndex = 0; ZeroIndex < matrixCount; ++ZeroIndex)
                     {
-                        dataGridView1.Rows[spawnZeroIndex].Cells[ZeroIndex].Value = random.Next(-10,10);
+                        dataGridView1.Rows[spawnZeroIndex].Cells[ZeroIndex].Value = random.Next(-interval, interval);
                     }
                 }
                 dataGridView2.Columns.Add("col1", "X");
@@ -249,7 +257,7 @@ namespace Lab1
                 // Заспавнить значения в таблице для вектора-столбца
                 for (int vectorSpawnIndex = 0; vectorSpawnIndex < matrixCount; ++vectorSpawnIndex)
                 {
-                    dataGridView2.Rows[vectorSpawnIndex].Cells[0].Value = random.Next(-10, 10);
+                    dataGridView2.Rows[vectorSpawnIndex].Cells[0].Value = random.Next(-interval, interval);
                 }
             }
 
@@ -299,7 +307,7 @@ namespace Lab1
             return vector;
         }
 
-        void IAlgebraicView.ShowResult(double[] result)
+        void IAlgebraicView.ShowResult(double[] result, int Method)
         {
             string resultString = "";
             if (result != null) 
@@ -310,7 +318,18 @@ namespace Lab1
                 }
                 
             }
-            MessageBox.Show(resultString, "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (Method == 1) 
+            {
+                richTextBox1.Text = resultString;
+            }
+            if (Method == 2)
+            {
+                richTextBox2.Text = resultString;
+            }
+            if (Method == 3)
+            {
+                richTextBox3.Text = resultString;
+            }
         }
     }
 }

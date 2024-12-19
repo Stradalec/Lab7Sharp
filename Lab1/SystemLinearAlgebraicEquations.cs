@@ -158,55 +158,59 @@ namespace Lab1
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     path = openFileDialog1.FileName;
-                }
-                using (FileStream file = new FileStream(path, FileMode.Open, FileAccess.Read))
-                {
-                    IWorkbook workbook = new XSSFWorkbook(file);
-                    ISheet sheet = workbook.GetSheetAt(0);
-                    // Извлечь данные из таблицы
-                    int rows = sheet.PhysicalNumberOfRows;
-                    int columns = sheet.GetRow(0).LastCellNum;
+                    using (FileStream file = new FileStream(path, FileMode.Open, FileAccess.Read))
+                    {
+                        IWorkbook workbook = new XSSFWorkbook(file);
+                        ISheet sheet = workbook.GetSheetAt(0);
+                        // Извлечь данные из таблицы
+                        int rows = sheet.PhysicalNumberOfRows;
+                        int columns = sheet.GetRow(0).LastCellNum;
 
-                    // Добавить столбцы в матрицу
-                    for (int columnMatrixIndex = 0; columnMatrixIndex < columns - 1; ++columnMatrixIndex)
-                    {
-                        dataGridView1.Columns.Add("col" + columnMatrixIndex.ToString(), "X [" + (columnMatrixIndex + 1).ToString() + "]");
-                    }
-
-                    // Добавить строки в матрицу
-                    for (int rowMatrixIndex = 0; rowMatrixIndex < rows - 1; ++rowMatrixIndex)
-                    {
-                        dataGridView1.Rows.Add();
-                    }
-                    dataGridView2.Columns.Add("col1", "X");
-                    // Добавить строки в вектор
-                    for (int vectorIndex = 0; vectorIndex < rows - 1; ++vectorIndex)
-                    {
-                        dataGridView2.Rows.Add();
-                    }
-
-                    // Заполнить dataGridViewMatrix и dataGridViewVector данными
-                    for (int fillRow = 0; fillRow < rows - 1; ++fillRow)
-                    {
-                        var row = sheet.GetRow(fillRow + 1);
-                        if (row != null) 
+                        // Добавить столбцы в матрицу
+                        for (int columnMatrixIndex = 0; columnMatrixIndex < columns - 1; ++columnMatrixIndex)
                         {
-                            for (int fillColumn = 0; fillColumn < columns - 1; ++fillColumn)
+                            dataGridView1.Columns.Add("col" + columnMatrixIndex.ToString(), "X [" + (columnMatrixIndex + 1).ToString() + "]");
+                        }
+
+                        // Добавить строки в матрицу
+                        for (int rowMatrixIndex = 0; rowMatrixIndex < rows - 1; ++rowMatrixIndex)
+                        {
+                            dataGridView1.Rows.Add();
+                        }
+                        dataGridView2.Columns.Add("col1", "X");
+                        // Добавить строки в вектор
+                        for (int vectorIndex = 0; vectorIndex < rows - 1; ++vectorIndex)
+                        {
+                            dataGridView2.Rows.Add();
+                        }
+
+                        // Заполнить dataGridViewMatrix и dataGridViewVector данными
+                        for (int fillRow = 0; fillRow < rows - 1; ++fillRow)
+                        {
+                            var row = sheet.GetRow(fillRow + 1);
+                            if (row != null)
                             {
-                                if (row.GetCell(fillColumn) != null)
+                                for (int fillColumn = 0; fillColumn < columns - 1; ++fillColumn)
                                 {
-                                    dataGridView1.Rows[fillRow].Cells[fillColumn].Value = row.GetCell(fillColumn).NumericCellValue;
+                                    if (row.GetCell(fillColumn) != null)
+                                    {
+                                        dataGridView1.Rows[fillRow].Cells[fillColumn].Value = row.GetCell(fillColumn).NumericCellValue;
+                                    }
+
+                                }
+                                if (row.GetCell(columns - 1) != null)
+                                {
+                                    dataGridView2.Rows[fillRow].Cells[0].Value = row.GetCell(columns - 1).NumericCellValue;
                                 }
 
                             }
-                            if (row.GetCell(columns - 1) != null) 
-                            {
-                                dataGridView2.Rows[fillRow].Cells[0].Value = row.GetCell(columns - 1).NumericCellValue;
-                            }
-                            
+
                         }
-                        
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка ввода пути папки", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 

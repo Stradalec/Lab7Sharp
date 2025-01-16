@@ -1,0 +1,22 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+    <NoWarn>$(NoWarn);NU1507</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Flee" Version="2.0.0" />
+    <PackageVersion Include="Gmg.MicrosoftOfficeInteropExcel" Version="1.0.0" />
+    <PackageVersion Include="HelixToolkit" Version="2.25.0" />
+    <PackageVersion Include="HelixToolkit.Wpf" Version="2.25.0" />
+    <PackageVersion Include="HelixToolkit.Wpf.SharpDX" Version="2.25.0" />
+    <PackageVersion Include="LightningChart" Version="12.1.1.1" />
+    <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageVersion Include="MicrosoftOfficeCore" Version="15.0.0" />
+    <PackageVersion Include="NPOI" Version="2.7.1" />
+    <PackageVersion Include="OxyPlot.Core" Version="2.2.0" />
+    <PackageVersion Include="OxyPlot.WindowsForms" Version="2.1.2" />
+    <PackageVersion Include="System.Configuration.ConfigurationManager" Version="8.0.1" />
+    <PackageVersion Include="System.Drawing.Common" Version="8.0.10" />
+  </ItemGroup>
+</Project>
